@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='normalize.css')}}"
+    />
+  </head>
+
+  <body>
+    {% include 'header.html' %}
+
+    <div class="contenedor">
+      <!----------------------IMAGEN Y DESCRIPCION-------------------->
+      <div class="mini-contenedor">
+        <div class="">
+          <img
+            class="img-principal"
+            src="{{ url_for('static', filename='principal.jpg') }}"
+            alt="Error al intentar cargar imagen"
+          />
+        </div>
+        <div class="text-principal">
+          <h2>
+            Departamento de Ciencias de la Comunicación y Desarrollos
+            Tecnológicos
+          </h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
+            inventore eaque soluta quod, voluptas amet ex tenetur eveniet? Eos
+            aut numquam ducimus quibusdam laudantium ex architecto inventore
+            nulla et minus? Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Quis odit aut expedita libero, autem temporibus porro deleniti
+            veritatis veniam, iure, ullam magni officiis quibusdam voluptas.
+            Doloremque suscipit et quas optio?Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Nobis dolor libero laudantium minima?
+            Assumenda expedita ab odio illo voluptate laboriosam excepturi
+            molestiae! Eos minus temporibus similique, omnis non animi est?
+          </p>
+        </div>
+      </div>
+      <!----------------------PARTE PRINCIPAL-------------------->
+      <div class="mini-contenedor">
+        <div class="avisos-home">
+          <h2>Avisos rapidos</h2>
+          {% for x in rap %}<!-- iteramos la colección que recibimos como "rap" -->
+          <div class="aviso-home">
+            <h3>{{ x['titulo'] }}</h3>
+            <!-- cargamos el valor de la llave "titulo" -->
+            <h4>Publicado por: {{ x['editor'] }}</h4>
+            <!-- cargamos el valor de la llave "editor" -->
+            <p>{{ x['descripcion'] }}</p>
+            <!-- cargamos el valor de la llave "descripcion" -->
+          </div>
+          {% endfor %}<!-- finalizamos el for -->
+        </div>
+        <div class="avisos-home">
+          <h2>Trabajos</h2>
+          {% for x in tra %}<!-- iteramos la colección que recibimos como "tra" -->
+          <div class="aviso-home">
+            <h3>{{ x['titulo'] }}</h3>
+            <!-- cargamos el valor de la llave "titulo" -->
+            <h4>Publicado por: {{ x['editor'] }}</h4>
+            <!-- cargamos el valor de la llave "editor" -->
+            <p>{{ x['descripcion'] }}</p>
+            <!-- cargamos el valor de la llave "descripcion" -->
+          </div>
+          {% endfor %}
+        </div>
+        <div class="avisos-home">
+          <h2>Proyectos</h2>
+          {% for x in pro %}<!-- iteramos la colección que recibimos como "pro" -->
+          <div class="aviso-home">
+            <h3>{{ x['titulo'] }}</h3>
+            <!-- cargamos el valor de la llave "titulo" -->
+            <h4>Publicado por: {{ x['editor'] }}</h4>
+            <!-- cargamos el valor de la llave "editor" -->
+            <p>{{ x['descripcion'] }}</p>
+            <!-- cargamos el valor de la llave "descripcion" -->
+          </div>
+          {% endfor %}<!-- finalizamos el for -->
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+  </body>
+</html>

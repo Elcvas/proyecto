@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admins</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css')}}">
+  </head>
+  <body>
+    {% include 'header.html' %}<!-- Incluimo el header.html -->
+    <div class="alinear-caja">
+      <h1>ADMINISTRADOR</h1>
+      <div class="contenedor-dos border">
+        {% if session['admin'] %}<!-- si hay una sesión "admin" se muestra lo siguiente -->
+        <h2>Control de editores</h2>
+        <div>
+          <form action="admins" method="post">
+            <input type="submit" name="btnalta" value="ALTA" />
+            <input type="submit" name="btnbuscar" value="BUSCAR" />
+          </form>
+        </div>
+          {% if alt == "mostraralta" %}<!-- si presionó en alta se muestra lo siguiente formulario -->
+          <h2>ALTA DE USUARIO</h2>
+          <form action="altaeditor" method="post">
+            <table>
+              <tr>
+                <td>Nombre:</td>
+                <td><input type="text" name="nombre" required /></td>
+              </tr>
+              <tr>
+                <td>Puesto:</td>
+                <td><input type="text" name="puesto" required /></td>
+              </tr>
+              <tr>
+                <td>Contacto:</td>
+                <td><input type="text" name="contacto" required /></td>
+              </tr>
+              <tr>
+                <td>Usuario:</td>
+                <td><input type="text" name="usuario" required /></td>
+              </tr>
+              <tr>
+                <td>Contraseña:</td>
+                <td><input type="password" name="passwd" required /></td>
+              </tr>
+            </table>
+            <input type="submit" name="altaeditor" value="Registrar" />
+          </form>
+          {% elif bus == "mostrareditor" %}<!-- de lo contrario si presionó en buscar -->
+          <h2>MODIFICAR ó ELIMINAR</h2>
+          <form action="buscareditor" method="post">
+            <select name="buscareditor" id="busqueda">
+              <option disabled selected>-SELECCIONAR-</option>
+              {% for x in coll.find(): %}<!-- iteramos la coleccion de editores -->
+              <option value="{{ x['usuario'] }}">{{ x['usuario'] }}</option><!-- cargamos los editores -->
+              {% endfor %}<!-- cerramos el for -->
+            </select>
+            <input type="submit" name="buscar" value="Buscar" />
+          </form>
+          <form action="modificareditor" method="post">
+            <table>
+              <tr>
+                <td>Nombre:</td>
+                <td><input type="text" name="nombre" value="{{ nom }}" /></td><!-- cargamos el nombre del editor -->
+              </tr>
+              <tr>
+                <td>Puesto:</td>
+                <td><input type="text" name="puesto" value="{{ pues }}" /></td><!-- cargamos el apellido del editor -->
+              </tr>
+              <tr>
+                <td>Contacto:</td>
+                <td>
+                  <input type="text" name="contacto" value="{{ conta }}" /><!-- cargamos el contacto del editor -->
+                </td>
+              </tr>
+              <tr>
+                <td>Usuario:</td>
+                <td><input type="text" name="usuario" value="{{ usu }}" /></td><!-- cargamos el usuario del editor -->
+              </tr>
+              <tr>
+                <td>Contraseña:</td>
+                <td>
+                  <input type="text" name="passwd" value="{{ contra }}" /><!-- cargamos la contraseña del editor -->
+                </td>
+              </tr>
+            </table>
+            <input type="submit" name="modeditor" value="Modificar" />
+            <input type="submit" name="bajaeditor" value="Eliminiar" />
+          </form>
+          {% endif %}<!-- cerramos el if -->
+        </div>
+        <div class="contenedor-dos cerrar-sesion">
+          <a href="logout">Cerrar Sesión</a>
+        </div>
+        {% else %}<!-- si no hay una sesión de administrador -->
+        <form action="login-admin" method="post">
+          <table>
+            <tr>
+              <td>Usuario:</td>
+              <td><input type="text" name="usuarioadmin" /></td>
+            </tr>
+            <tr>
+              <td>Contraseña:</td>
+              <td><input type="password" name="contraadmin" /></td>
+            </tr>
+          </table>
+          <input type="submit" name="iniciar" value="Iniciar" />
+        </form>
+        {% endif %}<!-- cerramos el if -->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css')}}">
+</head>
+<body>
+    {% include 'header.html' %}<!-- Incluimos el header.html -->
+    <div class="contenedor mini-contenedor">
+      <!----------------------PRINCIPAL-------------------->
+      <div class="aviso-principal">
+        <h1>CONFERENCIAS</h1>
+        {% for x in colle.find().sort('fecha_inicial', -1) %} {% if x['tipo'] ==
+        'conferencia' %}<!-- Iteramos la colección de avisos que es "colle" mostrando primero los ultimo agregados -->
+        <div class="aviso">
+          <form action="control_likes" method="post">
+          <input hidden type="text" name="aidi" value="{{ x['_id'] }}">
+          <h3 name="titulo">{{ x['titulo'] }}</h3><!-- cargamos el valor de la llave "titulo" -->
+          <h5>Publicado por: {{ x['editor'] }}</h5><!-- cargamos el valor de la llave "editor" -->
+          <p>{{ x['descripcion'] }}</p><!-- cargamos el valor de la llave "descripcion" -->
+          {% if session['user'] %}<!-- si hay una sesión "user" -->
+            {% if colledos.find_one({"id_aviso":x['_id']|string,"id_usuario":session['aidi_usu']|string}) == None %}<!-- y si en la coleccion "colledos" que es la colección de control de likes, no hay alguna colección con ese aviso y ese usuario agregados -->
+              <button class="button-like" type="submit" name="diolike">
+                <img src="{{ url_for('static', filename='like.png') }}"
+                  alt="Error"
+                  class="img-like"
+                  name="like"
+                />
+              </button>
+              {% elif colledos.find_one({"id_aviso":x['_id']|string,"id_usuario":session['aidi_usu']|string}) != None %}<!-- de lo contrario si existe -->
+              <button class="button-like" type="submit" name="diodislike"><!-- se imprime la imagen de "dislike" -->
+                <img src="{{ url_for('static', filename='dislike.png') }}"
+                  alt="Error"
+                  class="img-like"
+                  name="dislike"
+                />
+              </button>
+              {% endif %}<!-- cerramos el if -->
+            {% endif %}<!-- cerramos el if -->
+          </form>
+        </div>
+        {% endif %} {% endfor %}<!-- cerramos el if y el for -->
+      </div>
+      <!----------------------AVISOS DE LA DERECHA-------------------->
+      <!----------------------RAPIDOS-------------------->
+      <div class="avisos-derecha">
+        <h2>AVISOS RAPIDOS</h2>
+        {% for x in rap %}<!-- iteramos la colección que recibimos como "rap" -->
+        <div class="aviso">
+          <h3>{{ x['titulo'] }}</h3><!-- cargamos el valor de la llave "titulo" -->
+          <h5>Publicado por: {{ x['editor'] }}</h5><!-- cargamos el valor de la llave "editor" -->
+          <p>{{ x['descripcion'] }}</p><!-- cargamos el valor de la llave "descripcion" -->
+        </div>
+        {% endfor %}<!-- finalizamos el for -->
+        <!----------------------TRABAJOS-------------------->
+        <h2>TRABAJOS</h2>
+        {% for x in tra %}<!-- iteramos la colección que recibimos como "tra" -->
+        <div class="aviso">
+          <h3>{{ x['titulo'] }}</h3><!-- cargamos el valor de la llave "titulo" -->
+          <h5>Publicado por: {{ x['editor'] }}</h5><!-- cargamos el valor de la llave "editor" -->
+          <p>{{ x['descripcion'] }}</p><!-- cargamos el valor de la llave "descripcion" -->
+        </div>
+        {% endfor %}
+        <!----------------------PROYECTOS-------------------->
+        <h2>PROYECTOS</h2>
+        {% for x in pro %}<!-- iteramos la colección que recibimos como "pro" -->
+        <div class="aviso">
+          <h3>{{ x['titulo'] }}</h3><!-- cargamos el valor de la llave "titulo" -->
+          <h5>Publicado por: {{ x['editor'] }}</h5><!-- cargamos el valor de la llave "editor" -->
+          <p>{{ x['descripcion'] }}</p><!-- cargamos el valor de la llave "descripcion" -->
+        </div>
+        {% endfor %}<!-- finalizamos el for -->
+      </div>
+    </div>
+</body>
+</html>

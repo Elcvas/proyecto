@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css')}}"/>
+  </head>
+  <body>
+    {% include 'header.html' %}<!-- Incluimo el header.html -->
+    <div class="alinear-caja">
+      <h1>EDITORES</h1>
+      <div class="contenedor-dos border">
+        {% if session['editor'] %}<!-- si hay una sesión "editor" se muestra lo siguiente -->
+        <h2>Control de avisos</h2>
+        <div>
+          <form action="editores" method="post">
+            <input type="submit" name="btnalta" value="ALTA" />
+            <input type="submit" name="btnbuscar" value="BUSCAR" />
+          </form>
+        </div>
+        {% if alt == "mostraralta" %}<!-- si presionó en alta se muestra lo siguiente formulario -->
+        <h2>Alta avisos</h2>
+        <form action="alta-avisos" method="post">
+          <table>
+            <tr>
+              <td>Titulo:</td>
+              <td><input type="text" name="titulo" /></td>
+            </tr>
+            <tr>
+              <td>Tipo:</td>
+              <td>
+                <select name="tipo">
+                  <option selected disabled>-SELECCIONAR-</option>
+                  <option value="rapido">Rapido</option>
+                  <option value="trabajo">Trabajo</option>
+                  <option value="conferencia">Conferencia</option>
+                  <option value="proyecto">Proyecto</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Descripción:</td>
+              <td>
+                <textarea name="descripcion" cols="30" rows="10"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Fecha Inicial:</td>
+              <td><input type="date" name="fecha_inicial" /></td>
+            </tr>
+            <tr>
+              <td>Fecha Final:</td>
+              <td><input type="date" name="fecha_final" /></td>
+            </tr>
+            <tr>
+              <td>Editor:</td>
+              <td>
+                {% for x in colle.find() %} {% if session['editor'] ==
+                x['usuario'] %}<!-- iteramos la colección de usuarios y si el nombre de usuario es = a la sesión actual -->
+                <input type="text" name="editor" value="{{ x['nombre'] }}" />
+              </td>
+              {% endif %} {% endfor %}<!-- finalizamos if y for -->
+            </tr>
+          </table>
+          <input type="submit" name="alta-aviso" value="Enviar" />
+        </form>
+        {% elif bus == "mostrareditor" %}<!-- si presionó en buscar se muestra lo siguiente formulario -->
+        <h2>Editar avisos</h2>
+        <form action="buscaraviso" method="post">
+          <select name="buscaraviso">
+            <option disabled selected>-SELECCIONAR-</option>
+            {% for x in coll.find(): %}<!-- iteramos la coleccion de avisos -->
+            <option value="{{ x['titulo'] }}">{{ x['titulo'] }}</option><!-- cargamos los títulos de los avisos -->
+            {% endfor %}<!-- finalizamos el for -->
+          </select>
+          <input type="submit" name="buscar" value="Buscar" />
+        </form>
+        <form action="modificaravisos" method="post">
+          <table>
+            <tr>
+              <td>Titulo:</td>
+              <td><input type="text" name="titulo" value="{{ tit }}" /></td><!-- cargamos el "titulo" de la colección -->
+            </tr>
+            <tr>
+              <td>Tipo:</td>
+              <td>
+                <select name="tipo">
+                  <option value="{{ tip }}" disabled selected>{{ tip }}</option><!-- cargamos el "tipo" de la colección -->
+                  <option value="rapido">Rapido</option>
+                  <option value="trabajo">Trabajo</option>
+                  <option value="conferencia">Conferencia</option>
+                  <option value="proyecto">Proyecto</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Descripción:</td>
+              <td>
+                <textarea name="descripcion" id="" cols="30" rows="10">{{ des }}</textarea><!-- cargamos la "descripcion" de la colección -->
+              </td>
+            </tr>
+            <tr>
+              <td>Fecha Inicial:</td>
+              <td>
+                <input type="date" name="fecha_inicial" value="{{ fechi }}" /><!-- cargamos la "fecha_inicial" de la colección -->
+              </td>
+            </tr>
+            <tr>
+              <td>Fecha Final:</td>
+              <td>
+                <input type="date" name="fecha_final" value="{{ fechf }}" /><!-- cargamos la "fecha_final" de la colección -->
+              </td>
+            </tr>
+            <tr>
+              <td>Editor:</td>
+              <td><input type="text" name="editor" value="{{ edi }}" /></td><!-- cargamos el "editor" de la colección -->
+            </tr>
+          </table>
+          <input type="submit" name="modaviso" value="Modificar" />
+          <input type="submit" name="bajaaviso" value="Eliminiar" />
+        </form>
+        {% endif %}<!-- finalizamos el if -->
+      </div>
+      <div class="contenedor-dos cerrar-sesion">
+        <a href="logout">Cerrar Sesión</a>
+      </div>
+      {% else %}<!-- de lo contrario, si no hay una sesión "editor" -->
+      <form action="login-editor" method="post">
+        <table>
+          <tr>
+            <td>Usuario:</td>
+            <td><input type="text" name="usuarioeditor" /></td>
+          </tr>
+          <tr>
+            <td>Contraseña:</td>
+            <td><input type="password" name="contraeditor" /></td>
+          </tr>
+        </table>
+        <input type="submit" name="iniciar" value="Iniciar" />
+      </form>
+      {% endif %}<!-- finalizamos el if -->
+    </div>
+  </body>
+</html>

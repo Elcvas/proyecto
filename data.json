@@ -1,0 +1,11 @@
+{
+    "con": [{
+        "database": "departamento",
+        "coll": "usuarios",
+        "colldos": "administrador",
+        "colltres": "editores",
+        "collcuatro": "avisos",
+        "collcinco": "control",
+        "endpoint": "mongodb://localhost"
+    }]
+}

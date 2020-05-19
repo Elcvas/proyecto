@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css')}}">
+  </head>
+  <body>
+    {% include 'header.html' %}<!-- incluimo el header.html -->
+    <!--DIV GENERAL-->
+    <div class="contenedor-login">
+      <!--DIV PARA INICIAR SESION-->
+      {% if session['user'] %}<!-- si hay una sesión "user" -->
+      {% else %}<!-- de lo contrario -->
+      <div class="iniciar-sesion">
+        <form class="login-usuario" action="login" method="post">
+          <h2>Iniciar Sesión</h2>
+          <table>
+            <tr>
+              <td>
+                Usuario:
+              </td>
+              <td>
+                <input type="text" name="user" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Contraseña:
+              </td>
+              <td>
+                <input type="password" name="passwd" />
+              </td>
+            </tr>
+          </table>
+          <input type="submit" value="Iniciar" name="iniciar" />
+        </form>
+        {% if err == 1 %}<!-- si se equivocó de usuario o contraseña -->
+        <h4>Usuario y/o contraseña incorrecto</h4>
+        {% endif %}<!-- cerramos el if -->
+      </div>
+      <!--DIV PARA REGISTRO-->
+      <div class="registro-usuario">
+        <form class="login-usuario" action="add" method="post">
+          <h2>Registrarse</h2>
+          <table>
+            <tr>
+              <td>Nombre:</td>
+              <td><input type="text" name="nombre" /></td>
+            </tr>
+            <tr>
+              <td>Apellidos:</td>
+              <td><input type="text" name="apellido" /></td>
+            </tr>
+            <tr>
+              <td>Turno:</td>
+              <td>
+                <input type="radio" id="vespertino" name="turno" value="Vespertino"/>
+                <label for="Vespertino">Vespertino</label>
+                <input type="radio" id="matutino" name="turno" value="Matutino"/>
+                <label for="Matutino">Matutino</label>
+              </td>
+            </tr>
+            <tr>
+              <td>Codigo:</td>
+              <td><input type="text" name="codigo" /></td>
+            </tr>
+            <tr>
+              <td>Correo:</td>
+              <td><input type="mail" name="correo" /></td>
+            </tr>
+            <tr>
+              <td>Contraseña:</td>
+              <td><input type="password" name="passwd" /></td>
+            </tr>
+          </table>
+          <input type="submit" value="Registrar" name="registro" />
+        </form>
+      </div>
+    </div>
+    {% endif %}<!-- cerramos el if -->
+  </body>
+</html>

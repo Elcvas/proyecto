@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Directorio</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='normalize.css')}}"
+    />
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <div class="contenedor directorio">
+      <div>
+        <img src="{{ url_for('static', filename='aaron.png') }}" alt="Error al cargar imagen" />
+      </div>
+      <div>
+        <p>
+          Puesto: Jefe de Departamento Dirección: Av. Nuevo Periférico No. 555
+          Ejido San José Tateposco, C.P. 45425, Tonalá Jalisco, México.
+          Teléfono: +52 (33) 20 00 23 00 ext. 64100 Correo electrónico:
+          aaron.jimenez@cutonala.udg.mx
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

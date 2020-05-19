@@ -1,0 +1,218 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+.img-like {
+  height: 30px;
+  border-style: none;
+}
+.button-like {
+  border-style: none;
+  background-color: white;
+  cursor: pointer;
+}
+/*********************CONTENEDOR**********************/
+.alinear-caja {
+  text-align: -webkit-center;
+}
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.contenedor-header {
+  margin-left: auto;
+  margin-right: auto;
+}
+.border {
+  border: 3px solid black;
+  padding: 3rem;
+  margin: 2rem 0;
+  width: fit-content;
+}
+/*********************NAVEGACION**********************/
+
+.navegacion ul {
+  list-style: none;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(160, 157, 157);
+  padding: 1.2rem 7rem;
+  margin: 0 0 2rem 0;
+}
+
+.navegacion a:hover {
+  color: black;
+}
+
+.navegacion a {
+  padding: 1rem;
+}
+
+/*********************HOME**********************/
+.aviso-home {
+  overflow: auto;
+  height: 300px;
+  margin: 1.5rem 0;
+}
+.barra-principal {
+  background-color: rgb(59, 11, 11);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10rem;
+}
+
+.barra-principal a {
+  padding: 1rem;
+  margin: 1rem;
+}
+.centrar {
+  align-self: center;
+}
+.contenedor-principal {
+  flex-basis: 50%;
+}
+.text-principal {
+  padding: 0 2.5rem;
+}
+.img-principal {
+  width: 600px;
+  height: 400px;
+}
+
+.avisos-home {
+  border-right: groove;
+  margin: 1rem;
+  flex-basis: 31%;
+}
+.directorio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/*********************AVISOS PRINCIPALES**********************/
+
+.mini-contenedor {
+  display: flex;
+}
+
+.mini-contenedor .avisos-derecha {
+  flex-basis: 30%;
+  max-width: 30%;
+}
+
+.aviso-principal {
+  margin-right: 2em;
+  border-right-style: solid;
+  flex-basis: 80%;
+}
+
+.aviso {
+  border-bottom: groove;
+  max-height: 7%;
+  overflow: auto;
+  margin-bottom: 2rem;
+}
+.avisos-principales {
+  display: flex;
+  overflow: auto;
+  height: 500px;
+  margin: 2rem 0;
+}
+/*********************EDITORES y ADMINS**********************/
+.contenedor-dos {
+  text-align: -webkit-center;
+}
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(59, 11, 11);
+  color: white;
+}
+
+.cabecera a {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.fondo {
+  background-color: rgb(12, 12, 39);
+  height: 95vh;
+  min-height: 600px;
+  background-position: center center;
+  background-size: contain;
+}
+
+.subir-avisos ul {
+  list-style: none;
+  align-content: center;
+}
+
+.editar-avisos {
+  text-align: -webkit-center;
+}
+
+/*********************LOGIN**********************/
+.usuario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.usuario p {
+  color: white;
+}
+.contenedor-login {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  border-style: groove;
+  min-height: 300px;
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+.iniciar-sesion {
+  border-right: groove;
+  align-self: center;
+  padding: 0 3rem;
+  white-space: pre-line;
+}
+.registro-usuario {
+  align-self: center;
+  padding: 0 3rem;
+  white-space: pre-line;
+}
+.cerrar-sesion a {
+  /* display: block; */
+  padding: 1rem;
+  background-color: gray;
+}
+/*********************CONTROL**********************/
+.control-prin {
+  text-align: center;
+}
+.control-prin img {
+  max-width: 400px;
+  max-height: 400px;
+}
+.control {
+  display: flex;
+  justify-content: space-between;
+}
+.separacion {
+  margin-bottom: 2rem;
+}
+.boton img {
+  max-width: 60px;
+}
+.textarea {
+  display: grid;
+  width: 100%;
+  padding: 0 2rem;
+}
+.boton button {
+  min-width: 60px;
+  min-height: 50%;
+}

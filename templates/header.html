@@ -1,0 +1,37 @@
+<header>
+    <div class="contenedor-header">
+      <div class="barra-principal">
+          <h1><a href="/">CUT</a></h1>
+          {% if session['user'] %}<!-- si hay una sesión de usuario -->
+          <div class="centrar usuario">
+            <div>
+              <p>{{ session['user'] }}</p><!-- cargamos el usuario -->
+            </div>
+            <div class="">
+              <a href="logout">Cerrar Sesión</a>
+            </div>
+          </div>
+          {% elif session['editor'] %}<!-- si hay una sesion de editor -->
+          <div class="centrar">
+            <a href="login-editor">{{ session['editor'] }}</a><!-- cargamos al editor -->
+          </div>
+          {% elif session['admin'] %}<!-- si hay una sesión de administrador -->
+          <div class="centrar">
+            <a href="login-admin">{{ session['admin'] }}</a><!-- cargamos al administrador -->
+          </div>
+          {% else %}<!-- de lo contrario se muestra lo siguiente -->
+          <a href="login">Mi cuenta</a>
+          {% endif %}<!-- cerramos if -->
+      </div>
+      <nav class="navegacion">
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="avisosrapidos">Avisos rapidos</a></li>
+          <li><a href="trabajos">Trabajos</a></li>
+          <li><a href="conferencias">Conferencias</a></li>
+          <li><a href="proyectos">Proyectos</a></li>
+          <li><a href="directorio">Directorio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
